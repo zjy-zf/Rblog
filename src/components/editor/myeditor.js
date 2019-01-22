@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Editor, EditorState, RichUtils, getDefaultKeyBinding} from 'draft-js';
+import {
+  Editor,
+  EditorState,
+  RichUtils,
+  getDefaultKeyBinding
+} from 'draft-js';
 import './richEditor.css'
-
+import {
+  decorator
+} from './decorator/decorator.js'
 // Custom overrides for "code" style.
 const styleMap = {
   CODE: {
@@ -12,10 +19,13 @@ const styleMap = {
     padding: 2,
   },
 };
+
 function getBlockStyle(block) {
   switch (block.getType()) {
-    case 'blockquote': return 'RichEditor-blockquote';
-    default: return null;
+    case 'blockquote':
+      return 'RichEditor-blockquote';
+    default:
+      return null;
   }
 }
 class StyleButton extends React.Component {
@@ -38,20 +48,41 @@ class StyleButton extends React.Component {
     );
   }
 }
-const BLOCK_TYPES = [
-  {label: 'H1', style: 'header-one'},
-  {label: 'H2', style: 'header-two'},
-  {label: 'H3', style: 'header-three'},
-  {label: 'H4', style: 'header-four'},
-  {label: 'H5', style: 'header-five'},
-  {label: 'H6', style: 'header-six'},
-  {label: 'Blockquote', style: 'blockquote'},
-  {label: 'UL', style: 'unordered-list-item'},
-  {label: 'OL', style: 'ordered-list-item'},
-  {label: 'Code Block', style: 'code-block'},
-];
+const BLOCK_TYPES = [{
+  label: 'H1',
+  style: 'header-one'
+}, {
+  label: 'H2',
+  style: 'header-two'
+}, {
+  label: 'H3',
+  style: 'header-three'
+}, {
+  label: 'H4',
+  style: 'header-four'
+}, {
+  label: 'H5',
+  style: 'header-five'
+}, {
+  label: 'H6',
+  style: 'header-six'
+}, {
+  label: 'Blockquote',
+  style: 'blockquote'
+}, {
+  label: 'UL',
+  style: 'unordered-list-item'
+}, {
+  label: 'OL',
+  style: 'ordered-list-item'
+}, {
+  label: 'Code Block',
+  style: 'code-block'
+}, ];
 const BlockStyleControls = (props) => {
-  const {editorState} = props;
+  const {
+    editorState
+  } = props;
   const selection = editorState.getSelection();
   const blockType = editorState
     .getCurrentContent()
@@ -71,15 +102,22 @@ const BlockStyleControls = (props) => {
     </div>
   );
 };
-var INLINE_STYLES = [
-  {label: 'Bold', style: 'BOLD'},
-  {label: 'Italic', style: 'ITALIC'},
-  {label: 'Underline', style: 'UNDERLINE'},
-  {label: 'Monospace', style: 'CODE'},
-];
+var INLINE_STYLES = [{
+  label: 'Bold',
+  style: 'BOLD'
+}, {
+  label: 'Italic',
+  style: 'ITALIC'
+}, {
+  label: 'Underline',
+  style: 'UNDERLINE'
+}, {
+  label: 'Monospace',
+  style: 'CODE'
+}, ];
 const InlineStyleControls = (props) => {
   const currentStyle = props.editorState.getCurrentInlineStyle();
-  
+
   return (
     <div className="RichEditor-controls">
       {INLINE_STYLES.map((type) =>
@@ -98,9 +136,13 @@ const InlineStyleControls = (props) => {
 class MyEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty()};
+    this.state = {
+      editorState: EditorState.createEmpty(decorator)
+    };
     this.focus = () => this.refs.editor.focus();
-    this.onChange = (editorState) => this.setState({editorState});
+    this.onChange = (editorState) => this.setState({
+      editorState
+    });
     this.handleKeyCommand = this._handleKeyCommand.bind(this);
     this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
     this.toggleBlockType = this._toggleBlockType.bind(this);
@@ -115,7 +157,7 @@ class MyEditor extends React.Component {
     return false;
   }
   _mapKeyToEditorCommand(e) {
-    if (e.keyCode === 9 /* TAB */) {
+    if (e.keyCode === 9 /* TAB */ ) {
       const newEditorState = RichUtils.onTab(
         e,
         this.state.editorState,
@@ -145,7 +187,9 @@ class MyEditor extends React.Component {
     );
   }
   render() {
-    const {editorState} = this.state;
+    const {
+      editorState
+    } = this.state;
     // If the user changes block type before entering any text, we can
     // either style the placeholder or hide it. Let's just hide it now.
     let className = 'RichEditor-editor';
