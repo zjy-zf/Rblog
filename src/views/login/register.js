@@ -37,11 +37,11 @@ class Login extends Component {
             </div>
             <div className="auth-form-body">
               <label htmlFor="login_field">用户名：</label>
-              <input type="text" name="login" id="login_field" onChange={this.handleChange.bind(this, 'userName')} className="form-control input-block"/>
+              <input type="text" name="login" id="login_field" autoComplete="off" onChange={this.handleChange.bind(this, 'userName')} className="form-control input-block"/>
               <label htmlFor="password">密码：</label>
-              <input type="password" name="password" id="password" onChange={this.handleChange.bind(this, 'password')} className="form-control input-block"/>
+              <input type="password" name="password" id="password" autoComplete="off" onChange={this.handleChange.bind(this, 'password')} className="form-control input-block"/>
               <label htmlFor="password">确认密码：</label>
-              <input type="password" name="passwordAgain" id="passwordAgain" onChange={this.handleChange.bind(this, 'passwordAgain')} className="form-control input-block"/>
+              <input type="password" name="passwordAgain" id="passwordAgain" autoComplete="off" onChange={this.handleChange.bind(this, 'passwordAgain')} className="form-control input-block"/>
               <input type="submit" className="btn btn-block btn-primary" onClick={this.handleSubmit.bind(this)}/>
             </div>
           </form>
