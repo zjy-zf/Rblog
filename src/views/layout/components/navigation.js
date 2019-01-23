@@ -1,9 +1,19 @@
-import React, { Component } from 'react'
+import React, {
+  Component
+} from 'react'
 import './navigation.css'
-import { getAllMenu } from '../../../actions/menu.js'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { Link } from 'react-router-dom'
+import {
+  getAllMenu
+} from '../../../actions/menu.js'
+import {
+  connect
+} from 'react-redux'
+import {
+  bindActionCreators
+} from 'redux'
+import {
+  Link
+} from 'react-router-dom'
 
 class Navigation extends Component {
   constructor(props) {
@@ -12,7 +22,9 @@ class Navigation extends Component {
   }
 
   componentWillMount() {
-    const { actions } = this.props;
+    const {
+      actions
+    } = this.props;
     actions.getAllMenu();
   }
 
@@ -22,7 +34,7 @@ class Navigation extends Component {
       menuDom.className = 'site-navigation'
       return
     }
-    if(menuDom.className.indexOf('active') > 0) {
+    if (menuDom.className.indexOf('active') > 0) {
       menuDom.className = 'site-navigation'
     } else {
       menuDom.className = 'site-navigation active'
@@ -30,7 +42,9 @@ class Navigation extends Component {
   }
 
   render() {
-    const { menu } = this.props
+    const {
+      menu
+    } = this.props
     return (
       <div className="header-wrap">
         <header>
@@ -41,7 +55,7 @@ class Navigation extends Component {
           </div>
           <nav className="site-navigation" ref={this.menuRef}>
             <ul className="nav-menu">
-              { menu.map((item => (
+              { menu && menu.map((item => (
                   <li className="nav-item" key={item.id}>
                     <Link to={ item.treePath } onClick={() => this.handleShowMenu()}>{ item.menuName }</Link>
                     <ul className="nav-menu--dropdown">
@@ -67,14 +81,20 @@ class Navigation extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { menu } = state;
+  const {
+    menu
+  } = state;
   return {
     menu: menu && menu.items
   };
 };
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators({ getAllMenu }, dispatch) };
+  return {
+    actions: bindActionCreators({
+      getAllMenu
+    }, dispatch)
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

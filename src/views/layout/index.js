@@ -1,8 +1,13 @@
-import React, { Component } from 'react'
+import React, {
+  Component
+} from 'react'
 import Navigation from './components/navigation.js'
 import Footer from './components/footer.js'
 import BackToUp from '../../components/backToUp.js'
-import { Switch, Route } from 'react-router-dom'
+import {
+  Switch,
+  Route
+} from 'react-router-dom'
 import Index from '../index/index.js'
 import Technology from '../technology/index.js'
 import Essays from '../essays/index.js'
@@ -13,8 +18,30 @@ import ArticleDetail from '../../components/articleDetail.js'
 import ArticleEdit from '../article/index.js'
 import Login from '../login/index.js'
 import Register from '../login/register.js'
+import CanvasNest from 'canvas-nest.js'
+
+const config = {
+  color: '0,0,0',
+  count: 150,
+};
 
 class Layout extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cn: ''
+    }
+  }
+  componentDidMount() {
+    console.log("初始化canvas-nest")
+    const cn = new CanvasNest(document.querySelector("body"), config);
+    this.setState({
+      cn: cn
+    })
+  }
+  componentWillUnmount() {
+    this.state.cn.destroy();
+  }
   render() {
     return (
       <div id="app">
