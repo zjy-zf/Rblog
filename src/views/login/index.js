@@ -5,12 +5,21 @@ import './login.scss'
 import {
   Link
 } from 'react-router-dom'
+import {
+  userLogin
+} from '../../actions/login.js'
+import {
+  connect
+} from 'react-redux'
+import {
+  bindActionCreators
+} from 'redux'
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: '',
+      userAccount: '',
       password: ''
     }
     this.handleChange = this.handleChange.bind(this)
@@ -23,9 +32,22 @@ class Login extends Component {
     })
   }
   handleSubmit(event) {
-    console.log(event, this.state)
     event.preventDefault();
+    const {
+      actions
+    } = this.props;
+    actions.userLogin(this.state)
   }
+  componentWillReceiveProps(newProps) {
+    const {
+      oldLoginStatus
+    } = this.props
+    const newLoginStatus = newProps.loginStatus
+    if (newLoginStatus !== oldLoginStatus && newLoginStatus) {
+
+    }
+  }
+
   render() {
     return (
       <div className="container">
@@ -35,10 +57,10 @@ class Login extends Component {
               <h1>登陆</h1>
             </div>
             <div className="auth-form-body">
-              <label htmlFor="login_field">用户名：</label>
-              <input type="text" name="login" id="login_field" autoComplete="off" onChange={this.handleChange.bind(this, 'userName')} className="form-control input-block"/>
+              <label htmlFor="userAccount">用户名：</label>
+              <input type="text" name="userAccount" value={this.state.userAccount} id="userAccount" autoComplete="off" onChange={this.handleChange.bind(this, 'userAccount')} className="form-control input-block"/>
               <label htmlFor="password">密码：</label>
-              <input type="password" name="password" id="password" autoComplete="off" onChange={this.handleChange.bind(this, 'password')} className="form-control input-block"/>
+              <input type="password" name="password" value={this.state.password} id="password" autoComplete="off" onChange={this.handleChange.bind(this, 'password')} className="form-control input-block"/>
               <input type="submit" className="btn btn-block btn-primary" onClick={this.handleSubmit.bind(this)}/>
             </div>
           </form>
@@ -51,4 +73,21 @@ class Login extends Component {
   }
 }
 
-export default Login
+const mapStateToProps = (state) => {
+  const {
+    login
+  } = state
+  return {
+    loginStatus: login.loginStatus
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({
+      userLogin
+    }, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

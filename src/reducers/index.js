@@ -1,10 +1,13 @@
-import { combineReducers } from 'redux';
+import {
+  combineReducers
+} from 'redux';
 import menu from './menu';
 import home from './home';
 import article from './article.js'
 import technology from './technology.js'
 import essays from './essays.js'
 import resources from './resources'
+import login from './login.js'
 
 const rootReducer = combineReducers({
   menu,
@@ -12,7 +15,8 @@ const rootReducer = combineReducers({
   article,
   technology,
   essays,
-  resources
+  resources,
+  login
 });
 
 export default rootReducer;

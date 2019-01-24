@@ -26,7 +26,8 @@
 
 header {
   display: block;
-  max-width: 960px;
+  // max-width: 960px;
+  max-width: 100%;
   margin: 0 auto;
   .site-brand {
     float: left;
@@ -123,7 +124,7 @@ header {
     transform: translateX(-50%);
     overflow: hidden;
     width: 0;
-    transition: all 0.05s linear;
+    transition: all 0.1s linear;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 
@@ -211,7 +212,7 @@ header {
       text-align: left;
       transform: translateX(0);
       overflow: hidden;
-      transition: all 0.05s linear;
+      transition: all 0.2s linear;
       border: none;
       box-shadow: none;
       display: none;
@@ -230,4 +231,89 @@ header {
       width: auto;
     }
   }
+}
+
+@media screen and (max-width: 768px) {
+  .header-search {
+    width: 100%;
+    .inner-search-input {
+      width: 100%;
+    }
+  }    
+}
+
+@media screen and (min-width:  769px) {
+  .header-search {
+    width: auto;
+    .inner-search-input {
+      width: 24px;
+    }
+    &.in {
+      .inner-search-input {
+        display: inline-block;
+        width: 180px;
+        padding-right: 30px;
+      }
+    }
+  }
+}
+.header-search {
+  background: #888;
+  color: #fff;
+  // width: auto;
+  border-radius: 14px;
+  // border: 1px solid #888;
+  min-width: 24px;
+  height: 24px;
+  line-height: 24px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  .inner-search-input {
+    display: inline-block;
+    background: 0 0;
+    border: none;
+    color: #fff;
+    padding-left: 20px;
+    line-height: 24px!important;
+    height: 24px;
+    box-sizing: border-box;
+    vertical-align: 4px;
+    font-size: 14px;
+    transition: all .3s ease-in-out;
+  }
+  .iconfont {
+    font-size: 14px;
+    font-weight: 700;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    background: #888;
+    cursor: pointer;
+  }
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #fff;
+    font-size: 14px;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #fff;
+    font-size: 14px;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #fff;
+    font-size: 14px;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+     color:    #fff;
+    font-size: 14px;
+  }
+}
+* {
+  outline: 0;
+  outline-offset: 0;
 }

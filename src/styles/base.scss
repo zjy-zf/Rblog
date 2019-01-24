@@ -1,5 +1,4 @@
 @import "partial/footer.scss";
-@import "partial/navigation.scss";
 @import "partial/timeline.scss";
 @import "partial/reward.scss";
 
@@ -7,7 +6,6 @@
 @import "layout/home.scss";
 @import "layout/post.scss";
 @import "layout/tag.scss";
-@import "layout/category.scss";
 @import "layout/friend.scss";
 @import "layout/about.scss";
 
@@ -55,9 +53,20 @@ a:hover {
 }
 
 .container {
-  max-width: 750px;
-  min-height: 75vh;
+  min-height: 80vh;
   margin: 0 auto;
+}
+
+@media screen and (min-width: 769px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 100%;
+  }
 }
 
 .comment-anchor {

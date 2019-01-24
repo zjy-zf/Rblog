@@ -1,11 +1,17 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import {
+  createStore,
+  applyMiddleware,
+  compose
+} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import promiseMiddleware from '../middlewares/promiseMiddleware.js'
 import reducer from '../reducers';
 
 const createStoreWithMiddleware = applyMiddleware(
   thunkMiddleware,
-  promiseMiddleware({promiseTypeSuffixes: ['PENDING', 'SUCCESS', 'ERROR']})
+  promiseMiddleware({
+    promiseTypeSuffixes: ['PENDING', 'SUCCESS', 'ERROR']
+  })
 )(createStore);
 
 export default function configureStore(initialState) {
@@ -13,10 +19,10 @@ export default function configureStore(initialState) {
 
   if (process.env.NODE_ENV === 'development') {
     const persistState = require('redux-devtools').persistState;
-    // const DevTools = require('../containers/DevTools').default;
+    const DevTools = require('../containers/DevTools').default;
 
     const enhancer = compose(
-      // DevTools.instrument(),
+      DevTools.instrument(),
       persistState(
         window.location.href.match(
           /[?&]debug_session=([^&#]+)\b/
@@ -30,7 +36,7 @@ export default function configureStore(initialState) {
         store.replaceReducer(require('../reducers').default)
       );
     }
-  }else{
+  } else {
     store = createStoreWithMiddleware(reducer, initialState);
   }
 

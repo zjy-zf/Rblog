@@ -1,7 +1,7 @@
 import React, {
   Component
 } from 'react'
-import './navigation.css'
+import './navigation.scss'
 import {
   getAllMenu
 } from '../../../actions/menu.js'
@@ -19,6 +19,12 @@ class Navigation extends Component {
   constructor(props) {
     super(props)
     this.menuRef = React.createRef()
+    this.inputRef = React.createRef()
+    this.state = {
+      searchActive: false
+    }
+    this.showSearch = this.showSearch.bind(this);
+    this.hideSearch = this.hideSearch.bind(this);
   }
 
   componentWillMount() {
@@ -41,10 +47,76 @@ class Navigation extends Component {
     }
   }
 
+  showSearch() {
+    this.inputRef.current.focus();
+    this.setState({
+      searchActive: true
+    })
+  }
+
+  hideSearch() {
+    this.setState({
+      searchActive: false
+    })
+  }
+
+  componentDidUpdate() {
+    let links = document.querySelectorAll('.nav-item');
+    for (let link of links) {
+
+      let childrenLink = link.querySelector('ul');
+      link.addEventListener('mouseenter', () => {
+        if (childrenLink) {
+          childrenLink.className = "nav-menu--dropdown active";
+        }
+      })
+      link.addEventListener('mouseleave', () => {
+        if (childrenLink) {
+          childrenLink.className = "nav-menu--dropdown";
+        }
+      })
+    }
+  }
+
+  componentWillUnMount() {
+    let links = document.querySelectorAll('.nav-item');
+    for (let link of links) {
+      link.removeEventListener('mouseenter')
+      link.removeEventListener('mouseleave')
+    }
+  }
+
   render() {
     const {
-      menu
+      menu,
+      loginStatus
     } = this.props
+    let searchClassName = "header-search"
+    if (this.state.searchActive) {
+      searchClassName = "header-search in"
+    } else {
+      searchClassName = "header-search"
+    }
+    let userDom
+    if (loginStatus) {
+      userDom = (
+        <li className="nav-item">
+          个人中心
+          <ul className="nav-menu--dropdown">
+            <li>
+              <Link to="/edit" onClick={() => this.handleShowMenu()}>投稿</Link>
+            </li>
+          </ul>
+        </li>
+
+      )
+    } else {
+      userDom = (
+        <li className="nav-item" >
+          <Link to="/login" onClick={() => this.handleShowMenu()}>登陆/注册</Link>
+        </li>
+      )
+    }
     return (
       <div className="header-wrap">
         <header>
@@ -58,18 +130,14 @@ class Navigation extends Component {
               { menu && menu.map((item => (
                   <li className="nav-item" key={item.id}>
                     <Link to={ item.treePath } onClick={() => this.handleShowMenu()}>{ item.menuName }</Link>
-                    <ul className="nav-menu--dropdown">
-                        <li>
-                          <a href="javascript:void(0);">首页1</a>
-                        </li>
-                    </ul>
                 </li>
                 ))) }
+              { userDom }
               <li className="nav-item" >
-                <Link to="/login" onClick={() => this.handleShowMenu()}>登陆/注册</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/edit" onClick={() => this.handleShowMenu()}>投稿</Link>
+                <span onMouseOver={this.showSearch} onMouseOut={this.hideSearch} className={searchClassName}>
+                  <input ref={this.inputRef} onBlur={this.hideSearch} className="inner-search-input" placeholder="搜索..." type="text"/>
+                  <em className="iconfont icon-search"></em>
+                </span>
               </li>
             </ul>
           </nav>
@@ -82,10 +150,12 @@ class Navigation extends Component {
 
 const mapStateToProps = (state) => {
   const {
-    menu
+    menu,
+    login
   } = state;
   return {
-    menu: menu && menu.items
+    menu: menu.items,
+    loginStatus: login.loginStatus
   };
 };
 

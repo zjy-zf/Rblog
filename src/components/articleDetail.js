@@ -1,24 +1,40 @@
-import React, { Component } from 'react'
-import { getAeticleDetail } from '../actions/article.js'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, {
+	Component
+} from 'react'
+import {
+	getAeticleDetail
+} from '../actions/article.js'
+import {
+	connect
+} from 'react-redux'
+import {
+	bindActionCreators
+} from 'redux'
 import '../styles/css/github-markdown.css'
 import '../styles/css/highlight.css'
 import '../styles/css/prism.css'
-import { parseTime, getRealPath } from '../utils'
+import {
+	parseTime,
+	getRealPath
+} from '../utils'
 import Comment from './comment.js'
 
 class ArticleDetail extends Component {
 
 	componentWillMount() {
-		const { actions, match } = this.props
-		console.log(this.props)
-		actions.getAeticleDetail({ id: match.params.articleId })
+		const {
+			actions,
+			match
+		} = this.props
+		actions.getAeticleDetail({
+			id: match.params.articleId
+		})
 	}
 
 	render() {
-		const { article } = this.props
-		console.log('article', article)
+		const {
+			article
+		} = this.props
 		return (
 			<div className="container post-index">
 			<div className="post">
@@ -47,7 +63,7 @@ class ArticleDetail extends Component {
 		    <div className="copy-right">
 		      <div className="markdown-body">
 		        <blockquote>
-		        本文创建者 : { article.userName }
+		        本文作者 : { article.userName }
 		        </blockquote>
 		      </div>
 		    </div>
@@ -73,15 +89,20 @@ class ArticleDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { article } = state;
-  return {
-    article: article.detail
-  };
+	const {
+		article
+	} = state;
+	return {
+		article: article.detail
+	};
 };
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators({ getAeticleDetail }, dispatch) };
+	return {
+		actions: bindActionCreators({
+			getAeticleDetail
+		}, dispatch)
+	};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);
-

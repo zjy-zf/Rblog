@@ -3,25 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import './styles/base.scss';
 import './styles/icon/iconfont.css'
-import Layout from './views/layout/index.js';
 import * as serviceWorker from './serviceWorker';
-import {
-  BrowserRouter
-} from 'react-router-dom';
 import configureStore from './store/configureStore';
-import {
-  Provider
-} from 'react-redux'
+import Root from './containers/Root';
 const store = configureStore()
 
 window.AV = require('leancloud-storage')
 
 ReactDOM.render(
-  <Provider store={ store }>
-		<BrowserRouter>
-			<Layout />
-		</BrowserRouter>
-	</Provider>,
+  <Root store={store} />,
   document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
