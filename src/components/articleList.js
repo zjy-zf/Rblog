@@ -1,17 +1,29 @@
-import React, { Component } from 'react'
-import { formatTime } from '../utils'
+import React, {
+	Component
+} from 'react'
+import {
+	formatTime
+} from '../utils'
 import '../styles/css/github-markdown.css'
+import {
+	Link
+} from 'react-router-dom'
 
 class ArticleShow extends Component {
 	render() {
-		const { articleList } = this.props
+		const {
+			articleList
+		} = this.props
 		return (
 			<div>
 			{articleList.map((item => (
 				<div className="post" key={ item.id }>
 		    	<h1 className="article-title">
+		    		<Link to={{ pathname: "/article/detail", search: `?articleId=${item.id}` }}>
+              <span>{ item.title }</span>
+            </Link>
 			      <a href={`/article/${item.id}`}>
-			        <span>{ item.title }</span>
+			        
 			      </a>
 			    </h1>
 			    <div className="article-top-meta pc-view">

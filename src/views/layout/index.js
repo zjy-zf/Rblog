@@ -6,19 +6,12 @@ import Footer from './components/footer.js'
 import BackToUp from '../../components/backToUp.js'
 import {
   Switch,
-  Route
+  Route,
+  Redirect
 } from 'react-router-dom'
-import Index from '../index/index.js'
-import Technology from '../technology/index.js'
-import Essays from '../essays/index.js'
-import Resources from '../resources/index.js'
-import Message from '../message/index.js'
-import Me from '../me/index.js'
-import ArticleDetail from '../../components/articleDetail.js'
-import ArticleEdit from '../article/index.js'
-import Login from '../login/index.js'
-import Register from '../login/register.js'
 import CanvasNest from 'canvas-nest.js'
+import routes from '../../route/index.js'
+import authHOC from '../../utils/auth.js'
 
 const config = {
   color: '0,0,0',
@@ -47,16 +40,17 @@ class Layout extends Component {
       <div id="app">
         <Navigation/>
         <Switch>
-        	<Route path="/technology"  component={ Technology }></Route>
-        	<Route path="/essays"  component={ Essays }></Route>
-        	<Route path="/resources"  component={ Resources }></Route>
-        	<Route path="/message"  component={ Message }></Route>
-          <Route path="/me"  component={ Me }></Route>
-        	<Route path="/article/:articleId"  component={ ArticleDetail }></Route>
-          <Route path="/edit" component={ ArticleEdit }></Route>
-          <Route path="/login" component={ Login }></Route>
-        	<Route path="/register" component={ Register }></Route>
-          <Route path="/"  component={ Index }></Route>
+          {
+            routes.map((route, i) => (
+              <Route path={route.path}
+                key={i}
+                exact={route.exact}
+                render={props => (
+                  <route.component {...props} routes={route.routes} />
+                )}
+              />
+            ))
+          }
         </Switch>
         <Footer/>
         <BackToUp/>

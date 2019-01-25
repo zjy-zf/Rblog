@@ -17,7 +17,7 @@ export default class Root extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <Layout />
+          <Layout/>
         </BrowserRouter>
       </Provider>
     );

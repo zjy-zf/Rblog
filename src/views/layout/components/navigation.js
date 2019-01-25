@@ -104,7 +104,7 @@ class Navigation extends Component {
           个人中心
           <ul className="nav-menu--dropdown">
             <li>
-              <Link to="/edit" onClick={() => this.handleShowMenu()}>投稿</Link>
+              <Link to="/article/edit" onClick={() => this.handleShowMenu()}>投稿</Link>
             </li>
           </ul>
         </li>

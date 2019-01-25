@@ -1,9 +1,20 @@
-import React, { Component } from 'react'
-import { parseTime } from '../utils'
+import React, {
+	Component
+} from 'react'
+import {
+	parseTime
+} from '../utils'
+import {
+	Link
+} from 'react-router-dom'
 
 class TimeLine extends Component {
 	render() {
-		const { total, list, type } = this.props
+		const {
+			total,
+			list,
+			type
+		} = this.props
 		return (
 			<div className="timeline">
 			  <span className="archive-move-on"></span>
@@ -20,9 +31,9 @@ class TimeLine extends Component {
 			  		<article className="posts-collapse" key={item.id}>
 					    <header>
 					      <h2>
-					        <a href={`/article/${item.id}`}>
-					          <span>{item.title}</span>
-					        </a>
+					        <Link to={{ pathname: "/article/detail", search: `?articleId=${item.id}` }}>
+			              <span>{ item.title }</span>
+			            </Link>
 					      </h2>
 					      <div className="post-meta">
 					        { parseTime(item.publishTime, '{m}-{d}') }

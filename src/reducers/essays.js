@@ -17,12 +17,14 @@ export default function essays(state = initialState, action = {}) {
   switch (action.type) {
     // case GET_ARTICLE_PENDING:
     //   return Object.assign({}, state, { query: action.meta })
+    // 获取列表
     case ESS_GET_ARTICLE_SUCCESS:
       return Object.assign({}, state, {
         list: action.payload.data.records,
         total: action.payload.data.total,
         query: action.meta
       });
+
     default:
       return state;
   }
