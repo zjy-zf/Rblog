@@ -3,7 +3,8 @@ import React, {
 } from 'react'
 import './login.scss'
 import {
-  Link
+  Link,
+  withRouter
 } from 'react-router-dom'
 import {
   userLogin
@@ -44,7 +45,13 @@ class Login extends Component {
     } = this.props
     const newLoginStatus = newProps.loginStatus
     if (newLoginStatus !== oldLoginStatus && newLoginStatus) {
+      this.props.history.replace("/")
+    }
+  }
 
+  componentDidMount() {
+    if (this.props.loginStatus) {
+      this.props.history.goBack()
     }
   }
 
@@ -90,4 +97,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

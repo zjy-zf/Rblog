@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 const validate = function(history) {
-  const isLoggedIn = !!window.localStorage.getItem("uid");
+  const isLoggedIn = !!window.localStorage.getItem("token");
   if (!isLoggedIn && history.location.pathname != "/login") {
     history.replace("/login");
   }

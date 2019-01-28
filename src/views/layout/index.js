@@ -7,7 +7,8 @@ import BackToUp from '../../components/backToUp.js'
 import {
   Switch,
   Route,
-  Redirect
+  Redirect,
+  withRouter
 } from 'react-router-dom'
 import CanvasNest from 'canvas-nest.js'
 import routes from '../../route/index.js'
@@ -27,13 +28,20 @@ class Layout extends Component {
   }
   componentDidMount() {
     console.log("初始化canvas-nest")
-    const cn = new CanvasNest(document.querySelector("body"), config);
-    this.setState({
-      cn: cn
-    })
+    // const cn = new CanvasNest(document.querySelector("body"), config);
+    // this.setState({
+    //   cn: cn
+    // })
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      window.scrollTo(0, 0);
+    }
+  }
+
   componentWillUnmount() {
-    this.state.cn.destroy();
+    // this.state.cn.destroy();
   }
   render() {
     return (
@@ -41,15 +49,21 @@ class Layout extends Component {
         <Navigation/>
         <Switch>
           {
-            routes.map((route, i) => (
-              <Route path={route.path}
-                key={i}
-                exact={route.exact}
-                render={props => (
-                  <route.component {...props} routes={route.routes} />
-                )}
-              />
-            ))
+            routes.map((route, index) => {
+              if(route.private) {
+                return (<Route key={index} path={route.path} component={authHOC(route.component)} exact={route.exact} />)
+              } else {
+                return (
+                  <Route path={route.path}
+                    key={index}
+                    exact={route.exact}
+                    render={props => (
+                      <route.component {...props} routes={route.routes} />
+                    )}
+                  />
+                )
+              }
+            })
           }
         </Switch>
         <Footer/>
@@ -59,4 +73,4 @@ class Layout extends Component {
   }
 }
 
-export default Layout;
+export default withRouter(Layout);

@@ -30,6 +30,7 @@ export default function menu(state = initialState, action = {}) {
 
     //用户登陆成功
     case USER_LOGIN_SUCCESS:
+      window.localStorage.setItem("token", "123456677")
       return Object.assign({}, state, {
         loginStatus: true
       })

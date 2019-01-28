@@ -4,6 +4,7 @@ import React, {
 import {
   Route
 } from 'react-router-dom'
+import authHOC from '../../utils/auth.js'
 
 class Article extends Component {
   render() {
@@ -13,15 +14,21 @@ class Article extends Component {
     return (
       <div className="container">
   				{
-            routes.map((route, i) => (
-              <Route
-                key={i}
-                path={route.path}
-                render={props => (
-                  <route.component {...props} routes={route.routes} />
-                )}
-              />
-            ))
+            routes.map((route, index) => {
+              if(route.private) {
+                return (<Route key={index} path={route.path} component={authHOC(route.component)} exact={route.exact} />)
+              } else {
+                return (
+                  <Route path={route.path}
+                    key={index}
+                    exact={route.exact}
+                    render={props => (
+                      <route.component {...props} routes={route.routes} />
+                    )}
+                  />
+                )
+              }
+            })
           }
   			</div>
     )
