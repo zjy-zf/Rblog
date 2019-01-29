@@ -7,10 +7,7 @@ import {
   getDefaultKeyBinding
 } from 'draft-js';
 import './richEditor.css'
-import {
-  decorator
-} from './decorator/decorator.js'
-// Custom overrides for "code" style.
+
 const styleMap = {
   CODE: {
     backgroundColor: 'rgba(0, 0, 0, 0.05)',
@@ -137,7 +134,7 @@ class MyEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editorState: EditorState.createEmpty(decorator)
+      editorState: EditorState.createEmpty()
     };
     this.focus = () => this.refs.editor.focus();
     this.onChange = (editorState) => this.setState({

@@ -48,7 +48,7 @@ class Registry extends Component {
             <div className="auth-form-header">
               <h1>注册</h1>
             </div>
-            <div className="auth-form-body">
+            <div className="auth-form-body search-menu">
               <label htmlFor="nickName">昵称：</label>
               <input type="text" name="nickName" value={this.state.nickName} id="nickName" autoComplete="off" onChange={this.handleChange.bind(this, 'nickName')} className="form-control input-block"/>
               <label htmlFor="userAccount">用户名：</label>

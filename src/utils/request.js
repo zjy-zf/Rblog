@@ -31,12 +31,12 @@ const request = (config) => {
 			if (json.code === '00') { //成功
 				resolve(json)
 			} else {
+				// alert(json.msg)
 				reject('error')
 			}
-			console.log(json)
 		}).catch(error => {
+			// alert(error.message)
 			reject(error)
-			console.log(error)
 		})
 	})
 }

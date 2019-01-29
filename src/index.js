@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import './styles/base.scss';
 import './styles/icon/iconfont.css'
+import './styles/bootstrap/css/bootstrap.css'
 import * as serviceWorker from './serviceWorker';
 import configureStore from './store/configureStore';
 import Root from './containers/Root';

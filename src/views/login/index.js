@@ -63,7 +63,7 @@ class Login extends Component {
             <div className="auth-form-header">
               <h1>登陆</h1>
             </div>
-            <div className="auth-form-body">
+            <div className="auth-form-body search-menu">
               <label htmlFor="userAccount">用户名：</label>
               <input type="text" name="userAccount" value={this.state.userAccount} id="userAccount" autoComplete="off" onChange={this.handleChange.bind(this, 'userAccount')} className="form-control input-block"/>
               <label htmlFor="password">密码：</label>

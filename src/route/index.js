@@ -44,7 +44,7 @@ const routes = [{
   routes: [{
     path: '/article/edit',
     component: ArticleEdit,
-    private: true
+    // private: true
   }, {
     path: '/article/detail',
     component: ArticleDetail
