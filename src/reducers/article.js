@@ -5,23 +5,62 @@ import {
 const initialState = {
   detail: {},
   edit: {
-    title: {
-      value: '',
-      valid: false,
-      type: 'text',
-      placeholder: '键入标题',
-      rules: [{
-        required: true,
-        message: '请键入标题'
-      }]
-    }, // 文章题目
-    content: '', // 文章内容
-    digest: '', // 文章摘要
-    categoryId: '', //分类ID
-    id: undefined,
-    tags: '', //文章标签，自己填写，多个用','分隔
-    showMode: '', //展示方式(1：公开；2：私有)
-    articleStatus: '0', //文章状态(0：编辑中；1：已发布)
+    type: 'add',
+    form: {
+      id: undefined,
+      title: {
+        value: '',
+        valid: true,
+        type: 'text',
+        placeholder: '键入标题',
+        rules: [{
+          required: true,
+          message: '请键入标题'
+        }]
+      },
+      tags: {
+        value: '',
+        name: 'tags',
+        valid: true,
+        type: 'text',
+        placeholder: '键入标签，多标签以逗号分隔',
+        rules: [{
+          required: true,
+          message: '请键入标签'
+        }]
+      },
+      categoryId: {
+        type: 'select',
+        value: '',
+        valid: true,
+        placeholder: '选择分类'
+      },
+      showMode: {
+        type: 'select',
+        value: '',
+        valid: true,
+        placeholder: '选择展示方式'
+      },
+      digest: {
+        type: 'text',
+        value: '',
+        valid: true,
+        placeholder: '文章摘要',
+        rules: [{
+          required: true,
+          message: '请键入摘要'
+        }]
+      },
+      content: {
+        type: 'editor',
+        value: '',
+        valid: true,
+        rules: [{
+          required: true,
+          message: '请键入文章摘要'
+        }]
+      }
+    }
   }
 };
 

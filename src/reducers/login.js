@@ -19,6 +19,11 @@ import {
   FEG_LOGOUT,
 } from '.././actions/login';
 
+import {
+  setCookie,
+  delCookie
+} from '../utils/index.js'
+
 const initialState = {
   userInfo: [],
   loginStatus: false,
@@ -30,7 +35,6 @@ export default function menu(state = initialState, action = {}) {
 
     //用户登陆成功
     case USER_LOGIN_SUCCESS:
-      window.localStorage.setItem("token", "123456677")
       return Object.assign({}, state, {
         loginStatus: true
       })
@@ -39,6 +43,20 @@ export default function menu(state = initialState, action = {}) {
     case USER_REGISTRY_SUCCESS:
       return Object.assign({}, state, {
         registryStatus: true
+      })
+
+    case GET_USER_SUCCESS:
+      setCookie("token", action.payload.data.id)
+      return Object.assign({}, state, {
+        userInfo: action.payload.data,
+        loginStatus: true
+      })
+
+    case GET_USER_ERROR:
+      delCookie("token")
+      return Object.assign({}, state, {
+        userInfo: {},
+        loginStatus: false
       })
 
       //前端登出

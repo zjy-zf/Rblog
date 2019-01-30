@@ -49,7 +49,7 @@ class Login extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.loginStatus) {
       this.props.history.goBack()
     }

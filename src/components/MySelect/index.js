@@ -1,9 +1,9 @@
 import React, {
   Component
 } from 'react'
-import './index.scss'
+import './select.scss'
 
-class MyInput extends Component {
+class MySelect extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -18,28 +18,25 @@ class MyInput extends Component {
     const {
       rules
     } = this.props
-    this.props.handleInputChange(e)
+    this.props.handleSelectChange(e)
     this.handleValidate(e.target.value, rules)
   }
 
   handleValidate(value, rules) {
-    if (rules && rules.length > 0) {
-      for (var i = 0; i < rules.length; i++) {
-        if (rules[i].required && (!value || value.length === 0)) {
-          this.errorCallback(rules[i].message)
-          return
-        }
-        if (rules[i].validate && !rules[i].validate.test(value)) {
-          this.errorCallback(rules[i].message)
-          return
-        }
-        this.setState({
-          error: '',
-          valid: true
-        })
+    for (var i = 0; i < rules.length; i++) {
+      if (rules[i].required && (!value || value.length === 0)) {
+        this.errorCallback(rules[i].message)
+        return
       }
+      if (rules[i].validate && !rules[i].validate.test(value)) {
+        this.errorCallback(rules[i].message)
+        return
+      }
+      this.setState({
+        error: '',
+        valid: true
+      })
     }
-
   }
 
   errorCallback(message) {
@@ -51,25 +48,27 @@ class MyInput extends Component {
 
   render() {
     const {
-      type,
       value,
       name,
-      placeholder
+      placeholder,
+      options
     } = this.props
     let className, hasError
     if (this.state.valid) {
-      className = "blog-input"
+      className = "blog-select"
     } else {
-      className = "blog-input has-error"
+      className = "blog-select has-error"
       hasError = (<span className="text-danger">{this.state.error}</span>)
     }
     return (
       <div className={className}>
-        <input type={type} placeholder={placeholder} name={name} value={value} onChange={(e) => this.handleChange(e)}/>
+        <select placeholder={placeholder} name={name} value={value} onChange={(e) => this.handleChange(e)}>
+          { this.props.children }
+        </select>
         {hasError}
       </div>
     )
   }
 }
 
-export default MyInput
+export default MySelect

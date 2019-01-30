@@ -13,6 +13,15 @@ import {
 import CanvasNest from 'canvas-nest.js'
 import routes from '../../route/index.js'
 import authHOC from '../../utils/auth.js'
+import {
+  getUserInfo
+} from '../../actions/login.js'
+import {
+  connect
+} from 'react-redux'
+import {
+  bindActionCreators
+} from 'redux'
 
 const config = {
   color: '0,0,0',
@@ -26,6 +35,14 @@ class Layout extends Component {
       cn: ''
     }
   }
+
+  componentWillMount() {
+    const {
+      actions
+    } = this.props
+    actions.getUserInfo();
+  }
+
   componentDidMount() {
     console.log("初始化canvas-nest")
     // const cn = new CanvasNest(document.querySelector("body"), config);
@@ -37,6 +54,7 @@ class Layout extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
       window.scrollTo(0, 0);
+      this.props.actions.getUserInfo()
     }
   }
 
@@ -73,4 +91,16 @@ class Layout extends Component {
   }
 }
 
-export default withRouter(Layout);
+const mapStateToProps = (state) => {
+  return {}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators({
+      getUserInfo
+    }, dispatch)
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));

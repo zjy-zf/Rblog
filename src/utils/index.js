@@ -12,6 +12,22 @@ export function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
+export function setCookie(key, value) {
+  var date = new Date(),
+    t = 5;
+  date.setDate(date.getDate() + t);
+  document.cookie = key + '=' + encodeURIComponent(value) + ';expires=' + date.toGMTString();
+}
+
+export function delCookie(key) {
+  var date = new Date();
+  date.setTime(date.getTime() - 1);
+  var delValue = getCookie(key);
+  if (!!delValue) {
+    document.cookie = key + '=' + delValue + ';expires=' + date.toGMTString();
+  }
+}
+
 export function cleanArray(actual) {
   const newArray = []
   for (let i = 0; i < actual.length; i++) {
@@ -27,7 +43,7 @@ export function param(json) {
   return cleanArray(Object.keys(json).map(key => {
     if (json[key] === undefined) return ''
     return encodeURIComponent(key) + '=' +
-            encodeURIComponent(json[key])
+      encodeURIComponent(json[key])
   })).join('&')
 }
 
@@ -38,8 +54,8 @@ export function parseTime(time, cFormat) {
   const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
   let date
   if (typeof time === 'string') {
-		time = time.replace(/-/g,'/').replace(/T/g, ' ').split(".")[0]
-	}
+    time = time.replace(/-/g, '/').replace(/T/g, ' ').split(".")[0]
+  }
   if (typeof time === 'object') {
     date = time
   } else {
@@ -67,11 +83,11 @@ export function parseTime(time, cFormat) {
 }
 
 export function formatTime(time, option) {
-	let d
-	if (typeof time === 'string') {
-		time = time.replace(/-/g,'/').replace(/T/g, ' ').split(".")[0]
-	}
-	if (typeof time === 'object') {
+  let d
+  if (typeof time === 'string') {
+    time = time.replace(/-/g, '/').replace(/T/g, ' ').split(".")[0]
+  }
+  if (typeof time === 'object') {
     d = time
   } else {
     if (('' + time).length === 10) time = parseInt(time) * 1000
@@ -99,18 +115,15 @@ export function formatTime(time, option) {
 }
 
 export const getRealPath = pathname => {
-  if(!pathname) {
+  if (!pathname) {
     pathname = window.location.pathname
   }
   let names = pathname.split("/")
-  for(let i = names.length - 1; i >= 0; --i) {
+  for (let i = names.length - 1; i >= 0; --i) {
     let name = names[i].trim()
-    if(name.length > 0 && name !== "/" && name !== "index.html") {
+    if (name.length > 0 && name !== "/" && name !== "index.html") {
       return name
     }
   }
   return "/"
 }
-
-
-

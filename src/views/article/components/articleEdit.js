@@ -4,20 +4,27 @@ import React, {
 import RichEditor from '../../../components/RichEditor/index.js'
 import './articleEdit.scss'
 import MyInput from '../../../components/MyInput/index.js'
+import MySelect from '../../../components/MySelect/index.js'
+import {
+  getCategoryList
+} from '../../../actions/category.js'
+import {
+  connect
+} from 'react-redux'
+import {
+  bindActionCreators
+} from 'redux'
 
 class ArticleEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: 'draft',
       title: '', // 文章题目
-      content: '', // 文章内容
-      digest: '', // 文章摘要
+      tags: '', //文章标签
       categoryId: '', //分类ID
-      id: undefined,
-      tags: '', //文章标签，自己填写，多个用','分隔
       showMode: '', //展示方式(1：公开；2：私有)
-      articleStatus: '0', //文章状态(0：编辑中；1：已发布)
+      digest: '', // 文章摘要
+      content: '', // 文章内容
     }
     this.handleContentChange = this.handleContentChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -52,7 +59,14 @@ class ArticleEdit extends Component {
     }
   }
 
+  componentWillMount() {
+    this.props.actions.getCategoryList()
+  }
+
   render() {
+    const {
+      categorySelect
+    } = this.props
     return (
       <div className="article-edit">
         <div className="article-toolbar">
@@ -65,9 +79,7 @@ class ArticleEdit extends Component {
               type="text" 
               placeholder="键入主题" 
               name="title"
-              valid={this.state.valid}
               value={this.state.title} 
-              handleValidate={this.handleValidate}
               handleInputChange={this.handleChange} 
               rules={[{required: true, message: '请键入标题'}]} />
           </div>
@@ -76,34 +88,41 @@ class ArticleEdit extends Component {
               type="text" 
               placeholder="键入标签，多标签以英文逗号分隔" 
               name="tags"
-              valid={this.state.valid}
               value={this.state.tags} 
-              handleValidate={this.handleValidate}
               handleInputChange={this.handleChange} 
               rules={[{required: true, message: '请键入标签'}]} />
           </div>
           <div className="form-item col-sm-6 col-xs-12">
-            <select name="" id="" placeholder="分类" name="categoryId" value={this.state.categoryId} onChange={this.handleChange.bind(this)}>
+            <MySelect 
+            placeholder="分类" 
+            name="categoryId" 
+            value={this.state.categoryId} 
+            handleSelectChange={this.handleChange.bind(this)}
+            rules={[{required: true, message: '请选择分类'}]}>
               <option value="" disabled>请选择分类</option>
-              <option value="0">公开</option>
-              <option value="0">私有</option>
-              <option value="0">私有</option>
-              <option value="0">私有</option>
-              <option value="0">私有</option>
-              <option value="0">私有</option>
-              <option value="0">私有</option>
-              <option value="0">私有</option>
-            </select>
+              { categorySelect && categorySelect.map((item, index) => (<option key={index} value={item.id}>{item.cname}</option>)) }
+            </MySelect>
           </div>
           <div className="form-item col-sm-6 col-xs-12">
-            <select name="" id="" placeholder="展现方式" name="showMode" value={this.state.showMode}  onChange={this.handleChange.bind(this)}>
-              <option value="" disabled>请选择展现方式</option>
-              <option value="1">公开</option>
-              <option value="2">私有</option>
-            </select>
+            <MySelect 
+              placeholder="展现方式" 
+              name="showMode" 
+              value={this.state.showMode}
+              handleSelectChange={this.handleChange}
+              rules={[{required: true, message: '请选择展现方式'}]}>
+                <option value="" disabled>请选择展现方式</option>
+                <option value="1">公开</option>
+                <option value="2">私有</option>
+            </MySelect>
           </div>
           <div className="form-item col-xs-12">
-            <input type="text" placeholder="摘要" name="digest" value={this.state.digest}  onChange={this.handleChange.bind(this)}/>
+            <MyInput 
+              type="text" 
+              placeholder="摘要" 
+              name="digest" 
+              value={this.state.digest}
+              handleInputChange={this.handleChange.bind(this)}
+              rules={[{required: true, message: '请键入文章摘要'}]}/>
           </div>
         </div>
         <RichEditor handleContentChange={this.handleContentChange}/>
@@ -112,4 +131,21 @@ class ArticleEdit extends Component {
   }
 }
 
-export default ArticleEdit
+const mapStateToProps = (state) => {
+  const {
+    category
+  } = state
+  return {
+    categorySelect: category.categorySelect
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators({
+      getCategoryList
+    }, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleEdit)

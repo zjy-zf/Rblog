@@ -8,6 +8,7 @@ import technology from './technology.js'
 import essays from './essays.js'
 import resources from './resources'
 import login from './login.js'
+import category from './category.js'
 
 const rootReducer = combineReducers({
   menu,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   technology,
   essays,
   resources,
-  login
+  login,
+  category
 });
 
 export default rootReducer;
