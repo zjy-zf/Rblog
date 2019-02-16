@@ -4,7 +4,7 @@ import React, {
 import {
   Provider
 } from 'react-redux';
-import Layout from './views/layout/index.js';
+import Layout from '../views/layout/index.js';
 import {
   BrowserRouter
 } from 'react-router-dom';
