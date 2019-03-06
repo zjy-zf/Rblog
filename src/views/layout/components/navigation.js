@@ -78,8 +78,8 @@ class Navigation extends Component {
     }
   }
 
-  componentWillUnMount() {
-    let links = document.querySelectorAll('.nav-item');
+  componentWillUnmount() {
+    const links = document.querySelectorAll('.nav-item');
     for (let link of links) {
       link.removeEventListener('mouseenter')
       link.removeEventListener('mouseleave')
