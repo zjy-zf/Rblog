@@ -39,7 +39,6 @@ class MyInput extends Component {
         })
       }
     }
-
   }
 
   errorCallback(message) {
@@ -56,19 +55,31 @@ class MyInput extends Component {
       name,
       placeholder
     } = this.props
-    let className, hasError
+    let className, hasError, render;
     if (this.state.valid) {
       className = "blog-input"
     } else {
       className = "blog-input has-error"
       hasError = (<span className="text-danger">{this.state.error}</span>)
     }
-    return (
-      <div className={className}>
-        <input type={type} placeholder={placeholder} name={name} value={value} onChange={(e) => this.handleChange(e)}/>
-        {hasError}
-      </div>
-    )
+    if (type === 'text' || type === 'password') {
+      render = (
+        <div className={className}>
+          <input type={type} placeholder={placeholder} name={name} value={value} onChange={(e) => this.handleChange(e)}/>
+          {hasError}
+        </div>
+      )
+    } else if (type === 'select') {
+      render = (
+        <div className={className}>
+          <select placeholder={placeholder} name={name} value={value} onChange={(e) => this.handleChange(e)}>
+            { this.props.children }
+          </select>
+          {hasError}
+        </div>
+      )
+    }
+    return (render)
   }
 }
 

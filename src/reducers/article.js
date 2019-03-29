@@ -5,10 +5,9 @@ import {
 const initialState = {
   detail: {},
   edit: {
+    id: undefined,
     type: 'add',
-    form: {
-      id: undefined,
-      title: {
+    form: [{
         value: '',
         valid: true,
         type: 'text',
@@ -17,8 +16,7 @@ const initialState = {
           required: true,
           message: '请键入标题'
         }]
-      },
-      tags: {
+      },{
         value: '',
         name: 'tags',
         valid: true,
@@ -28,20 +26,17 @@ const initialState = {
           required: true,
           message: '请键入标签'
         }]
-      },
-      categoryId: {
+      },{
         type: 'select',
         value: '',
         valid: true,
         placeholder: '选择分类'
-      },
-      showMode: {
+      },{
         type: 'select',
         value: '',
         valid: true,
         placeholder: '选择展示方式'
-      },
-      digest: {
+      },{
         type: 'text',
         value: '',
         valid: true,
@@ -50,17 +45,8 @@ const initialState = {
           required: true,
           message: '请键入摘要'
         }]
-      },
-      content: {
-        type: 'editor',
-        value: '',
-        valid: true,
-        rules: [{
-          required: true,
-          message: '请键入文章摘要'
-        }]
       }
-    }
+    ]
   }
 };
 
