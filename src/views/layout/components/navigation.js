@@ -6,6 +6,9 @@ import {
   getAllMenu
 } from '../../../actions/menu.js'
 import {
+  logOut
+} from '../../../actions/login.js'
+import {
   connect
 } from 'react-redux'
 import {
@@ -25,6 +28,7 @@ class Navigation extends Component {
     }
     this.showSearch = this.showSearch.bind(this);
     this.hideSearch = this.hideSearch.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   componentWillMount() {
@@ -52,6 +56,10 @@ class Navigation extends Component {
     this.setState({
       searchActive: true
     })
+  }
+
+  handleLogout() {
+    this.props.actions.logOut()
   }
 
   hideSearch() {
@@ -106,6 +114,9 @@ class Navigation extends Component {
             <li>
               <Link to="/article/edit" onClick={() => this.handleShowMenu()}>投稿</Link>
             </li>
+            <li>
+              <a href="javascript:void(0)" onClick={this.handleLogout}>退出</a>
+            </li>
           </ul>
         </li>
 
@@ -130,7 +141,7 @@ class Navigation extends Component {
               { menu && menu.map((item => (
                   <li className="nav-item" key={item.id}>
                     <Link to={ item.treePath } onClick={() => this.handleShowMenu()}>{ item.menuName }</Link>
-                </li>
+                  </li>
                 ))) }
               { userDom }
               <li className="nav-item" >
@@ -162,7 +173,8 @@ const mapStateToProps = (state) => {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      getAllMenu
+      getAllMenu,
+      logOut
     }, dispatch)
   };
 }

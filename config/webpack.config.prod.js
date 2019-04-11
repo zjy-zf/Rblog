@@ -300,6 +300,13 @@ module.exports = {
                     },
                   },
                 ],
+                [
+                  "import", {
+                    "libraryName": "antd",
+                    "libraryDirectory": "es",
+                    "style": "css" // `style: true` 会加载 less 文件
+                  }
+                ]
               ],
               cacheDirectory: true,
               // Save disk space when time isn't as important

@@ -1,7 +1,7 @@
 import React, {
   Component
 } from 'react'
-import './select.scss'
+import './index.scss'
 
 class MySelect extends Component {
   constructor(props) {

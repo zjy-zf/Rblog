@@ -17,7 +17,8 @@ import {
   LOGOUT_ERROR,
 
   FEG_LOGOUT,
-} from '.././actions/login';
+} from '.././actions/login'
+import { message } from 'antd'
 
 import {
   setCookie,
@@ -35,6 +36,7 @@ export default function menu(state = initialState, action = {}) {
 
     //用户登陆成功
     case USER_LOGIN_SUCCESS:
+      message.success("登录成功！")
       return Object.assign({}, state, {
         loginStatus: true
       })
