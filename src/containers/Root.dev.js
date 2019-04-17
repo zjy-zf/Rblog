@@ -20,7 +20,7 @@ export default class Root extends Component {
         <BrowserRouter>
           <Layout/>
         </BrowserRouter>
-        <DevTools/>
+        {/*<DevTools/>*/}
       </Provider>
     );
   }

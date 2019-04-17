@@ -7,7 +7,7 @@ import {
 
 const validate = function(history) {
   const isLoggedIn = !!window.localStorage.getItem("token");
-  if (!isLoggedIn && history.location.pathname != "/login") {
+  if (!isLoggedIn && history.location.pathname !== "/login") {
     history.replace("/login");
   }
 };

@@ -7,7 +7,6 @@ import BackToUp from '../../components/backToUp.js'
 import {
   Switch,
   Route,
-  Redirect,
   withRouter
 } from 'react-router-dom'
 import CanvasNest from 'canvas-nest.js'

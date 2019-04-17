@@ -13,6 +13,7 @@ import {
 } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
+import upload from '../../utils/upload.js'
 
 class RichEditor extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class RichEditor extends Component {
       editorState: EditorState.createEmpty()
     }
     this.onEditorStateChange = this.onEditorStateChange.bind(this)
+    this.uploadImageCallback = this.uploadImageCallback.bind(this)
   }
 
   onEditorStateChange(editorState) {
@@ -33,6 +35,20 @@ class RichEditor extends Component {
     })
   }
 
+  uploadImageCallback(file) {
+    let formData = new FormData()
+    formData.append('file', file)
+    return new Promise((resolve, reject) => {
+      upload({
+        url: '/image/upload',
+        type: 'POST',
+        data: formData
+      }).then(res => {
+        resolve({data: { link: (process.env.NODE_ENV === 'production'?'':'http://image.zhendehenyouyisi.com/')+res.data.filePath }})
+      })
+    })
+  }
+
   render() {
     const {
       editorState
@@ -41,7 +57,7 @@ class RichEditor extends Component {
         editorState={editorState}
         onEditorStateChange={this.onEditorStateChange}
         toolbar={{
-          image: { uploadCallback: function(file){ console.log(file) } }
+          image: { uploadCallback: this.uploadImageCallback }
         }}
       />)
   }
