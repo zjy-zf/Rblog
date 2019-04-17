@@ -69,6 +69,7 @@ class ArticleEdit extends Component {
           _this.setState({
             loading: false
           })
+          this.props.history.replace("/")
         }).catch(error => {
           message.success(error.msg)
           _this.setState({
@@ -156,7 +157,7 @@ class ArticleEdit extends Component {
             </Col>
             <Col xs={24}>
               <Form.Item label="摘要" required>
-                {getFieldDecorator('email', {
+                {getFieldDecorator('digest', {
                   rules: [{
                     required: true, message: '请填写摘要',
                   }],
