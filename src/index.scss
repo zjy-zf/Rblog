@@ -6,9 +6,16 @@ body {
     sans-serif;
   /*-webkit-font-smoothing: antialiased;*/
   /*-moz-osx-font-smoothing: grayscale;*/
+  a, a:hover {
+    color: black;
+  }
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.rdw-embedded-modal, .rdw-link-modal {
+  height: auto !important;
 }

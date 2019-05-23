@@ -39,11 +39,11 @@ class Layout extends Component {
     const {
       actions
     } = this.props
-    actions.getUserInfo();
+    // actions.getUserInfo();
   }
 
   componentDidMount() {
-    console.log("初始化canvas-nest")
+    // console.log("初始化canvas-nest")
     // const cn = new CanvasNest(document.querySelector("body"), config);
     // this.setState({
     //   cn: cn
@@ -53,7 +53,7 @@ class Layout extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
       window.scrollTo(0, 0);
-      this.props.actions.getUserInfo()
+      // this.props.actions.getUserInfo()
     }
   }
 
