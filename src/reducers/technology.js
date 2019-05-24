@@ -1,6 +1,6 @@
 import {
-  TECH_GET_ARTICLE,
-  TECH_GET_ARTICLE_PENDING,
+  // TECH_GET_ARTICLE,
+  // TECH_GET_ARTICLE_PENDING,
   TECH_GET_ARTICLE_SUCCESS,
 } from '.././actions/technology.js';
 

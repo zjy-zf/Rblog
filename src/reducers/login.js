@@ -1,20 +1,20 @@
 import {
-  USER_LOGIN_PENDING,
+  // USER_LOGIN_PENDING,
   USER_LOGIN_SUCCESS,
-  USER_LOGIN_ERROR,
+  // USER_LOGIN_ERROR,
 
-  USER_REGISTRY_PENDING,
+  // USER_REGISTRY_PENDING,
   USER_REGISTRY_SUCCESS,
-  USER_REGISTRY_ERROR,
+  // USER_REGISTRY_ERROR,
 
-  GET_USER_PENDING,
+  // GET_USER_PENDING,
   GET_USER_SUCCESS,
   GET_USER_ERROR,
 
-  LOGOUT,
-  LOGOUT_PENDING,
+  // LOGOUT,
+  // LOGOUT_PENDING,
   LOGOUT_SUCCESS,
-  LOGOUT_ERROR,
+  // LOGOUT_ERROR,
 
   FEG_LOGOUT,
 } from '.././actions/login'
@@ -37,6 +37,7 @@ export default function menu(state = initialState, action = {}) {
     //用户登陆成功
     case USER_LOGIN_SUCCESS:
       message.success("登录成功！")
+      setCookie("token", JSON.stringify(action.payload))
       return Object.assign({}, state, {
         loginStatus: true
       })
@@ -48,7 +49,6 @@ export default function menu(state = initialState, action = {}) {
       })
 
     case GET_USER_SUCCESS:
-      setCookie("token", action.payload.data.id)
       return Object.assign({}, state, {
         userInfo: action.payload.data,
         loginStatus: true
@@ -63,6 +63,7 @@ export default function menu(state = initialState, action = {}) {
 
       //前端登出
     case FEG_LOGOUT:
+      delCookie("token")
       return Object.assign({}, state, {
         userInfo: {},
         loginStatus: false
@@ -70,6 +71,7 @@ export default function menu(state = initialState, action = {}) {
 
       //用户登出
     case LOGOUT_SUCCESS:
+      delCookie("token")
       return Object.assign({}, state, {
         userInfo: {},
         loginStatus: false

@@ -1,6 +1,6 @@
 import {
-  RES_GET_ARTICLE,
-  RES_GET_ARTICLE_PENDING,
+  // RES_GET_ARTICLE,
+  // RES_GET_ARTICLE_PENDING,
   RES_GET_ARTICLE_SUCCESS,
 } from '../actions/resources.js';
 

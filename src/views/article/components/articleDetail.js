@@ -49,7 +49,7 @@ class ArticleDetail extends Component {
           </span>
             <span>
               分类 :
-                <a href="javascript:void(0);">
+                <a>
                   { article.category }
                 </a>
             </span>
@@ -73,7 +73,7 @@ class ArticleDetail extends Component {
             <span>
               <i className="iconfont icon-06tags"></i>标签:
               <span className="span--tag">
-                <a href="javascript:void(0);">
+                <a>
                   {}
                 </a>
               </span>

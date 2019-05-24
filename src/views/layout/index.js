@@ -10,8 +10,9 @@ import {
   withRouter
 } from 'react-router-dom'
 // import CanvasNest from 'canvas-nest.js'
-import routes from '../../route/index.js'
-import authHOC from '../../utils/auth.js'
+import routes from '../../route/index'
+import authHOC from '../../utils/auth'
+import { getCookie } from '../../utils'
 import {
   getUserInfo
 } from '../../actions/login.js'
@@ -36,10 +37,13 @@ class Layout extends Component {
   }
 
   componentWillMount() {
-    // const {
-    //   actions
-    // } = this.props
-    // actions.getUserInfo();
+    const {
+      actions
+    } = this.props
+    if (getCookie('token')) {
+      actions.getUserInfo()
+    }
+
   }
 
   componentDidMount() {

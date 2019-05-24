@@ -23,7 +23,7 @@ class ArticleShow extends Component {
               <span>{ item.title }</span>
             </Link>
 			      <a href={`/article/${item.id}`}>
-			        
+
 			      </a>
 			    </h1>
 			    <div className="article-top-meta pc-view">
@@ -37,7 +37,7 @@ class ArticleShow extends Component {
 			      </span>
 		        <span>
 		        分类 :
-		          <a href="javascript:void(0);">
+		          <a>
 		          </a>
 		        </span>
 		        <span>
@@ -65,14 +65,14 @@ class ArticleShow extends Component {
 	                <a href="">
 	                { item.tags }
 	                </a>
-	              </span>         
+	              </span>
 			        </span>
 			      </div>
 		        <div className="article-meta pull-right">
 		          <span className="pc-view">
 		            <i className="iconfont icon-view"></i>浏览:
 		            <span className="article-timer" data-identity="">{ item.clickHit }</span>
-		          </span> 
+		          </span>
 		        </div>
 			    </div>
 			  </div>

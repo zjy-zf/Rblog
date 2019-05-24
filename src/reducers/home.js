@@ -1,6 +1,6 @@
 import {
-  GET_ARTICLE,
-  GET_ARTICLE_PENDING,
+  // GET_ARTICLE,
+  // GET_ARTICLE_PENDING,
   GET_ARTICLE_SUCCESS,
 } from '.././actions/article';
 

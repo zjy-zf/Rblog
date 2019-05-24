@@ -19,10 +19,10 @@ class Pagination extends Component {
 		const { pageNo, pageSize, total } = this.props
 		let prevBtn, nextBtn
 		if (pageNo > 1) {
-			prevBtn = (<a href="javascript:void(0);" onClick={(e) => this.handlePrev(e)}>上一页</a>)
+			prevBtn = (<a onClick={(e) => this.handlePrev(e)}>上一页</a>)
 		}
 		if (pageNo*pageSize < total) {
-			nextBtn = (<a href="javascript:void(0);" onClick={(e) => this.handleNext(e)}>下一页</a>)
+			nextBtn = (<a onClick={(e) => this.handleNext(e)}>下一页</a>)
 		}
 
 		return (

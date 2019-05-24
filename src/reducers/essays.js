@@ -1,6 +1,6 @@
 import {
-  ESS_GET_ARTICLE,
-  ESS_GET_ARTICLE_PENDING,
+  // ESS_GET_ARTICLE,
+  // ESS_GET_ARTICLE_PENDING,
   ESS_GET_ARTICLE_SUCCESS,
 } from '.././actions/essays.js';
 

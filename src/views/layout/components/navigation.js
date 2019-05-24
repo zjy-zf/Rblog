@@ -20,7 +20,7 @@ import {
 
 class Navigation extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.menuRef = React.createRef()
     this.inputRef = React.createRef()
     this.state = {
@@ -115,7 +115,7 @@ class Navigation extends Component {
               <Link to="/article/edit" onClick={() => this.handleShowMenu()}>投稿</Link>
             </li>
             <li>
-              <a href="javascript:void(0)" onClick={this.handleLogout}>退出</a>
+              <a onClick={this.handleLogout}>退出</a>
             </li>
           </ul>
         </li>
