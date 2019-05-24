@@ -3,8 +3,6 @@ import React, {
 } from 'react'
 import RichEditor from '../../../components/RichEditor/index.js'
 import './articleEdit.scss'
-import MyInput from '../../../components/MyInput/index.js'
-import MySelect from '../../../components/MySelect/index.js'
 import {
   getCategoryList
 } from '../../../actions/category.js'
@@ -39,8 +37,8 @@ class ArticleEdit extends Component {
   }
 
   handleChange(e) {
-    const name = e.target.name
-    const value = e.target.value
+    // const name = e.target.name
+    // const value = e.target.value
   }
 
   handleValidate(name, valid) {
@@ -87,7 +85,7 @@ class ArticleEdit extends Component {
   render() {
     const {
       categorySelect,
-      articleEdit
+      // articleEdit
     } = this.props
 
     const colProps = {

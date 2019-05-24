@@ -1,7 +1,7 @@
 import request from '../utils/request.js'
-import {
-  param
-} from '../utils'
+// import {
+//   param
+// } from '../utils'
 
 export const GET_CATEGORY_LIST = 'GET_CATEGORY_LIST'
 export const GET_CATEGORY_LIST_PENDING = 'GET_CATEGORY_LIST_PENDING'

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
 class Pagination extends Component {
 
@@ -16,7 +16,7 @@ class Pagination extends Component {
 	}
 
 	render() {
-		const { pageNo, pageSize, total, dispatch } = this.props
+		const { pageNo, pageSize, total } = this.props
 		let prevBtn, nextBtn
 		if (pageNo > 1) {
 			prevBtn = (<a href="javascript:void(0);" onClick={(e) => this.handlePrev(e)}>上一页</a>)

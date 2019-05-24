@@ -9,9 +9,9 @@ import Register from '../views/login/register.js'
 import Article from '../views/article/index.js'
 import ArticleDetail from '../views/article/components/articleDetail.js'
 import ArticleEdit from '../views/article/components/articleEdit.js'
-import {
-  Route
-} from "react-router-dom";
+// import {
+//   Route
+// } from "react-router-dom";
 
 const routes = [{
   path: '/',

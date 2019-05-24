@@ -4,7 +4,7 @@ export const upload = (config) => {
 		url,
 		data,
 		type,
-		contentType
+		// contentType
 	} = config
 	return new Promise((resolve, reject) => {
 		let options = {}

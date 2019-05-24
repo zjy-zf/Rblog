@@ -9,10 +9,10 @@ import './index.scss';
 import {
   EditorState,
   convertToRaw,
-  ContentState
+  // ContentState
 } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
+// import htmlToDraft from 'html-to-draftjs';
 import upload from '../../utils/upload.js'
 
 class RichEditor extends Component {

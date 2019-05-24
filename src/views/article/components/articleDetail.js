@@ -15,7 +15,7 @@ import '../../../styles/css/highlight.css'
 import '../../../styles/css/prism.css'
 import {
   parseTime,
-  getRealPath
+  // getRealPath
 } from '../../../utils'
 import Comment from '../../../components/comment.js'
 
@@ -44,11 +44,11 @@ class ArticleDetail extends Component {
         </h1>
         <div className="article-top-meta">
           <span>
-            发布 : 
+            发布 :
             { parseTime(article.publishTime, '{y}-{m}-{d}') }
           </span>
             <span>
-              分类 : 
+              分类 :
                 <a href="javascript:void(0);">
                   { article.category }
                 </a>
@@ -71,7 +71,7 @@ class ArticleDetail extends Component {
         <div className="article-footer">
           <div className="article-meta pull-left">
             <span>
-              <i className="iconfont icon-06tags"></i>标签: 
+              <i className="iconfont icon-06tags"></i>标签:
               <span className="span--tag">
                 <a href="javascript:void(0);">
                   {}

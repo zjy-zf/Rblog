@@ -23,7 +23,7 @@ class Comment extends Component {
 	render() {
 		return (
 			<div>
-				<a href="#comment" className="comment-anchor"></a>
+				<a href="#vcomments" className="comment-anchor"></a>
 				<div className="comment-title">
 				<i className="iconfont icon-footprint"></i> 留下足迹 <i className="iconfont icon-footprint"></i>
 				</div>

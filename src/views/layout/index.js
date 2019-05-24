@@ -9,7 +9,7 @@ import {
   Route,
   withRouter
 } from 'react-router-dom'
-import CanvasNest from 'canvas-nest.js'
+// import CanvasNest from 'canvas-nest.js'
 import routes from '../../route/index.js'
 import authHOC from '../../utils/auth.js'
 import {
@@ -22,10 +22,10 @@ import {
   bindActionCreators
 } from 'redux'
 
-const config = {
-  color: '0,0,0',
-  count: 150,
-};
+// const config = {
+//   color: '0,0,0',
+//   count: 150,
+// };
 
 class Layout extends Component {
   constructor(props) {
@@ -36,9 +36,9 @@ class Layout extends Component {
   }
 
   componentWillMount() {
-    const {
-      actions
-    } = this.props
+    // const {
+    //   actions
+    // } = this.props
     // actions.getUserInfo();
   }
 

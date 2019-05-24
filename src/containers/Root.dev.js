@@ -4,7 +4,7 @@ import React, {
 import {
   Provider
 } from 'react-redux';
-import DevTools from './DevTools';
+// import DevTools from './DevTools';
 import Layout from '../views/layout/index.js';
 import {
   BrowserRouter
