@@ -9,7 +9,7 @@ class HearderSearch extends Component {
         <form action="" className="header-search-form">
           <label htmlFor="searchFilter" className="form-control header-search-label">
             <input type="text" autoComplate="off" name="searchFilter" id="searchFilter" className="header-search-input"/>
-            <img src="https://github.githubassets.com/images/search-key-slash.svg" alt="" className="header-search-key-slash">
+            <img src="https://github.githubassets.com/images/search-key-slash.svg" alt="" className="header-search-key-slash"/>
           </label>
         </form>
       </div>

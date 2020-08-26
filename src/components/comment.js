@@ -16,8 +16,9 @@ class Comment extends Component {
       notify: false,
       verify: false,
       avatar: "robohash",
-      placeholder: "填写评论"
-    })
+			placeholder: "填写评论",
+			path: window.location.pathname + window.location.search
+		})
 	}
 
 	render() {
